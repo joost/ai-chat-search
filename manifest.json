@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "AI Chat Search",
+  "version": "1.0",
+  "permissions": ["storage", "webRequest"],
+  "host_permissions": ["*://*.openai.com/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "images/icon.png"
+  },
+  "icons": {
+    "48": "images/icon.png",
+    "128": "images/icon.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["fulltext.js"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://chat.openai.com/*"],
+      "js": ["contentScript.js"]
+    }
+  ]
+}
